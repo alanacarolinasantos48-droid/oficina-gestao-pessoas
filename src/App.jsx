@@ -890,7 +890,6 @@ function CertificadoView({ settings, participants, onBack, persist, data }) {
 }
     }
     setResult(updated);
-  }
 
   return (
     <div className="min-h-screen px-5 py-14" style={{ background: LIGHT }}>
@@ -933,7 +932,7 @@ function CertificadoView({ settings, participants, onBack, persist, data }) {
       </div>
     </div>
   );
-
+}
 const CertificateCard = React.forwardRef(function CertificateCard({ settings, participant }, ref) {
   const validationCode = participant.certCode;
   return (
