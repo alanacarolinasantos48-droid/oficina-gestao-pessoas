@@ -888,8 +888,8 @@ function CertificadoView({ settings, participants, onBack, persist, data }) {
     participants: nextParticipants,
   });
 }
-    }
     setResult(updated);
+    }
 
   return (
     <div className="min-h-screen px-5 py-14" style={{ background: LIGHT }}>
