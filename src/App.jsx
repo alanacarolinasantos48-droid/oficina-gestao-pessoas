@@ -862,9 +862,32 @@ function CertificadoView({ settings, participants, onBack, persist, data }) {
     }
     let updated = found;
     if (!found.certCode) {
-      updated = { ...found, certCode: genCode() };
-      const nextParticipants = participants.map((p) => (p.id === found.id ? updated : p));
-      await persist({ settings: data.settings, participants: nextParticipants });
+  const newCertCode = genCode();
+
+  const { error } = await supabase
+    .from("inscricoes")
+    .update({
+      certificado_emitido: true,
+      codigo_certificado: newCertCode,
+    })
+    .eq("id", found.id);
+
+  if (error) {
+    console.error("Erro ao emitir certificado:", error);
+    return;
+  }
+
+  updated = { ...found, certCode: newCertCode };
+
+  const nextParticipants = participants.map((p) =>
+    p.id === found.id ? updated : p
+  );
+
+  await persist({
+    settings: data.settings,
+    participants: nextParticipants,
+  });
+}
     }
     setResult(updated);
   }
