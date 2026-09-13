@@ -1145,8 +1145,35 @@ function AdminParticipantes({ participants, settings, persist }) {
   });
 
   async function updateParticipant(id, changes) {
-    const next = participants.map((p) => (p.id === id ? { ...p, ...changes } : p));
-    await persist({ settings, participants: next });
+  const updateData = {};
+
+  if (changes.status === "Presente") {
+    updateData.presenca = true;
+  } else if (changes.status === "Ausente" || changes.status === "Inscrito") {
+    updateData.presenca = false;
+  }
+
+  if (changes.certCode !== undefined) {
+    updateData.certificado_emitido = Boolean(changes.certCode);
+    updateData.codigo_certificado = changes.certCode || null;
+  }
+
+  const { error } = await supabase
+    .from("inscricoes")
+    .update(updateData)
+    .eq("id", id);
+
+  if (error) {
+    console.error("Erro ao atualizar inscrição no Supabase:", error);
+    return;
+  }
+
+  const next = participants.map((p) =>
+    p.id === id ? { ...p, ...changes } : p
+  );
+
+  await persist({ settings, participants: next });
+}
   }
   async function deleteParticipant(id) {
     if (!window.confirm("Excluir esta inscrição? Esta ação não pode ser desfeita.")) return;
