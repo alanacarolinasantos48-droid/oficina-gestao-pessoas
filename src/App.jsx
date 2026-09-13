@@ -1174,7 +1174,6 @@ function AdminParticipantes({ participants, settings, persist }) {
 
   await persist({ settings, participants: next });
 }
-  }
   async function deleteParticipant(id) {
     if (!window.confirm("Excluir esta inscrição? Esta ação não pode ser desfeita.")) return;
     const next = participants.filter((p) => p.id !== id);
