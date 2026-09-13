@@ -166,7 +166,7 @@ export default function App() {
       whatsapp: item.whatsapp || "",
       institution: item.instituicao || "",
       city: item.cidade || "",
-      status: item.presenca ? "Presente" : "Inscrito",
+      status: item.presenca ? "presente" : "inscrito",
       certCode: item.codigo_certificado || "",
       registeredAt: item.created_at,
     }));
