@@ -1176,9 +1176,9 @@ function AdminParticipantes({ participants, settings, persist }) {
   async function updateParticipant(id, changes) {
   const updateData = {};
 
-  if (changes.status === "Presente") {
+  if (changes.status === "presente") {
     updateData.presenca = true;
-  } else if (changes.status === "Ausente" || changes.status === "Inscrito") {
+  } else if (changes.status === "ausente" || changes.status === "inscrito") {
     updateData.presenca = false;
   }
 
