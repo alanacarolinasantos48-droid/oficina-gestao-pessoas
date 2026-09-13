@@ -994,6 +994,7 @@ function Row({ label, value, mono }) {
 function AdminView({ settings, participants, persist, onExit, saveError }) {
   const [authed, setAuthed] = useState(false);
   const [pwd, setPwd] = useState("");
+  const [email, setEmail] = useState("");
   const [authError, setAuthError] = useState("");
   const [tab, setTab] = useState("dashboard"); // dashboard | participantes | evento
 
@@ -1011,24 +1012,30 @@ function AdminView({ settings, participants, persist, onExit, saveError }) {
             <h1 className="font-serif-brand text-lg font-bold" style={{ color: NAVY }}>Área administrativa</h1>
           </div>
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (pwd === settings.adminPassword) {
-                setAuthed(true);
-                setAuthError("");
-              } else {
-                setAuthError("Senha incorreta.");
-              }
-            }}
+            onSubmit={async (e) => {
+  e.preventDefault();
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password: pwd,
+  });
+
+  if (error) {
+    setAuthError("E-mail ou senha incorretos.");
+    return;
+  }
+
+  setAuthed(true);
+  setAuthError("");
+}}
             className="space-y-3"
           >
+            <input type="email" placeholder="E-mail do administrador" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 rounded-xl border text-sm" required />
             <input type="password" placeholder="Senha de administrador" value={pwd} onChange={(e) => setPwd(e.target.value)} className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none" style={{ borderColor: "#D6DFE9" }} />
             {authError && <p className="text-xs" style={{ color: "#B3261E" }}>{authError}</p>}
             <button className="w-full py-2.5 rounded-full font-semibold text-sm" style={{ background: GOLD, color: NAVY }}>Entrar</button>
           </form>
-          <p className="text-[11px] text-gray-400 mt-4 leading-relaxed">
-            Senha padrão configurável em "Evento" após o login. Este login é uma proteção simples de interface — para um site em produção com dados sensíveis, recomenda-se autenticação de servidor.
-          </p>
+          <p className="text-[11px] text-gray-400 mt-4 leading-relaxed">Acesso restrito à administração do evento.</p>
         </div>
       </div>
     );
