@@ -1,4 +1,4 @@
-# Oficina Gestão Estratégica de Pessoas
+# Oficina Gestão Estratégica de Pessoas.
 
 Site do evento **Oficina Gestão Estratégica de Pessoas** (IFMA – Campus Grajaú),
 construído com **React + Vite** e **Tailwind CSS**, com inscrição gravada em
