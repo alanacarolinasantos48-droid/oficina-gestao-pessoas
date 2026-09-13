@@ -143,13 +143,42 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastRegisteredId, setLastRegisteredId] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const d = await loadSiteData();
-      setData(d);
+ useEffect(() => {
+  (async () => {
+    const localData = await loadSiteData();
+
+    const { data: inscricoes, error } = await supabase
+      .from("inscricoes")
+      .select("*")
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      console.error("Erro ao carregar inscrições do Supabase:", error);
+      setData(localData);
       setLoading(false);
-    })();
-  }, []);
+      return;
+    }
+
+    const participants = (inscricoes || []).map((item) => ({
+      id: item.id,
+      name: item.nome || "",
+      email: item.email || "",
+      whatsapp: item.whatsapp || "",
+      institution: item.instituicao || "",
+      city: item.cidade || "",
+      status: item.presenca ? "Presente" : "Inscrito",
+      certCode: item.codigo_certificado || "",
+      registeredAt: item.created_at,
+    }));
+
+    setData({
+      ...localData,
+      participants,
+    });
+
+    setLoading(false);
+  })();
+}, []);
 
   async function persist(nextData) {
     setData(nextData);
