@@ -933,7 +933,6 @@ function CertificadoView({ settings, participants, onBack, persist, data }) {
       </div>
     </div>
   );
-}
 
 const CertificateCard = React.forwardRef(function CertificateCard({ settings, participant }, ref) {
   const validationCode = participant.certCode;
