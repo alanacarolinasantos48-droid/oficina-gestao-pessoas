@@ -16,7 +16,7 @@ body {
 }
 
 /* ============================================================
-   CERTIFICADO — NOVO MODELO HORIZONTAL
+   CERTIFICADO — MODELO HORIZONTAL
    ============================================================ */
 .print-only-card {
   position: relative;
@@ -62,12 +62,8 @@ body {
   z-index: 0;
 }
 
-.print-only-card > * {
-  position: relative;
-  z-index: 1;
-}
+.print-only-card > * { position: relative; z-index: 1; }
 
-/* Título CERTIFICADO */
 .print-only-card > p:first-child {
   margin-top: 5.5%;
   font-family: Georgia, "Times New Roman", serif;
@@ -86,7 +82,6 @@ body {
   background: linear-gradient(90deg, transparent, #C9A227 15%, #C9A227 85%, transparent) !important;
 }
 
-/* Texto principal e nome do participante */
 .print-only-card > p:nth-child(3) {
   max-width: 860px;
   margin: 0 auto;
@@ -114,7 +109,6 @@ body {
   font-size: clamp(11px, 1.2vw, 14px) !important;
 }
 
-/* Assinaturas: apenas os nomes, sem rótulos artificiais */
 .print-only-card > div:nth-child(5) {
   width: 72%;
   margin: 44px auto 0 !important;
@@ -127,17 +121,13 @@ body {
   text-align: center !important;
 }
 
-.print-only-card > div:nth-child(5) > div > p:first-child {
-  display: none !important;
-}
-
+.print-only-card > div:nth-child(5) > div > p:first-child { display: none !important; }
 .print-only-card > div:nth-child(5) > div > p:last-child {
   color: #0F2A4A !important;
   font-size: clamp(11px, 1.15vw, 14px) !important;
   font-weight: 600 !important;
 }
 
-/* Parceiros em rodapé, discretos */
 .print-only-card > div:nth-child(6) {
   position: absolute !important;
   left: 6%;
@@ -157,7 +147,6 @@ body {
   padding: 5px 9px !important;
 }
 
-/* QR Code no canto inferior direito */
 .print-only-card > div:nth-child(7) {
   position: absolute !important;
   right: 4.5%;
@@ -178,17 +167,6 @@ body {
   height: clamp(58px, 7vw, 82px) !important;
 }
 
-.print-only-card > div:nth-child(7) p:first-child {
-  color: #7B8796 !important;
-  font-size: clamp(8px, 0.8vw, 10px) !important;
-}
-
-.print-only-card > div:nth-child(7) p:last-child {
-  color: #0F2A4A !important;
-  font-size: clamp(9px, 1vw, 12px) !important;
-  font-weight: 700 !important;
-}
-
 @media screen and (max-width: 760px) {
   .print-only-card {
     width: 960px;
@@ -199,14 +177,9 @@ body {
 }
 
 @media print {
-  @page {
-    size: A4 landscape;
-    margin: 0;
-  }
+  @page { size: A4 landscape; margin: 0; }
 
-  html,
-  body,
-  #root {
+  html, body, #root {
     width: 297mm !important;
     height: 210mm !important;
     margin: 0 !important;
@@ -215,32 +188,16 @@ body {
     background: #fff !important;
   }
 
-  body {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  body * {
-    visibility: hidden !important;
-  }
-
-  .print-only-card,
-  .print-only-card * {
-    visibility: visible !important;
-  }
+  body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body * { visibility: hidden !important; }
+  .print-only-card, .print-only-card * { visibility: visible !important; }
 
   .print-only-card {
     position: fixed !important;
     left: 0 !important;
     top: 0 !important;
-    right: auto !important;
-    bottom: auto !important;
     width: 297mm !important;
     height: 210mm !important;
-    min-width: 297mm !important;
-    max-width: 297mm !important;
-    min-height: 210mm !important;
-    max-height: 210mm !important;
     box-sizing: border-box !important;
     aspect-ratio: auto !important;
     margin: 0 !important;
@@ -248,104 +205,80 @@ body {
     overflow: hidden !important;
     border: 1.2mm solid #C9A227 !important;
     box-shadow: none !important;
-    padding: 16mm 20mm 18mm !important;
+    padding: 14mm 20mm 38mm !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
 
-  .print-only-card > p:first-child {
-    margin-top: 11mm !important;
-    font-size: 19mm !important;
-  }
+  .print-only-card > p:first-child { margin-top: 8mm !important; font-size: 17mm !important; }
+  .print-only-card > div:nth-child(2) { margin: 3mm auto 5mm !important; }
+  .print-only-card > p:nth-child(3) { max-width: 220mm !important; font-size: 3.8mm !important; line-height: 1.45 !important; }
+  .print-only-card > p:nth-child(3) > span:first-child { margin: 3mm auto 3.5mm !important; padding-bottom: 1.5mm !important; max-width: 195mm !important; font-size: 11mm !important; }
+  .print-only-card > p:nth-child(4) { margin-top: 1.5mm !important; font-size: 3.1mm !important; }
+  .print-only-card > div:nth-child(5) { width: 72% !important; margin: 7mm auto 0 !important; gap: 18mm !important; }
+  .print-only-card > div:nth-child(5) > div { padding-top: 2mm !important; }
+  .print-only-card > div:nth-child(5) > div > p:last-child { font-size: 2.8mm !important; }
 
-  .print-only-card > div:nth-child(2) {
-    margin: 4mm auto 6mm !important;
-  }
-
-  .print-only-card > p:nth-child(3) {
-    max-width: 220mm !important;
-    font-size: 4.2mm !important;
-    line-height: 1.55 !important;
-  }
-
-  .print-only-card > p:nth-child(3) > span:first-child {
-    margin: 4mm auto 4.5mm !important;
-    padding-bottom: 1.5mm !important;
-    max-width: 195mm !important;
-    font-size: 12mm !important;
-  }
-
-  .print-only-card > p:nth-child(4) {
-    margin-top: 2mm !important;
-    font-size: 3.4mm !important;
-  }
-
-  .print-only-card > div:nth-child(5) {
-    width: 72% !important;
-    margin: 10mm auto 0 !important;
-    gap: 18mm !important;
-  }
-
-  .print-only-card > div:nth-child(5) > div {
-    padding-top: 2.5mm !important;
-  }
-
-  .print-only-card > div:nth-child(5) > div > p:last-child {
-    font-size: 3mm !important;
-  }
-
+  /* Rodapé reservado dentro da página para impedir corte */
   .print-only-card > div:nth-child(6) {
+    position: absolute !important;
     display: flex !important;
     visibility: visible !important;
-    left: 16mm !important;
-    bottom: 11mm !important;
-    width: 190mm !important;
-    gap: 2mm !important;
+    left: 14mm !important;
+    bottom: 13mm !important;
+    width: 185mm !important;
+    max-height: 25mm !important;
+    gap: 1.8mm !important;
     flex-wrap: wrap !important;
+    align-content: flex-end !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+    z-index: 10 !important;
   }
-
-  .print-only-card > div:nth-child(6),
-  .print-only-card > div:nth-child(6) * {
-    visibility: visible !important;
-  }
-
+  .print-only-card > div:nth-child(6), .print-only-card > div:nth-child(6) * { visibility: visible !important; }
   .print-only-card > div:nth-child(6) span {
-    font-size: 2.4mm !important;
-    padding: 1.2mm 2.2mm !important;
+    display: inline-block !important;
+    font-size: 2.2mm !important;
+    line-height: 1.2 !important;
+    padding: 1mm 2mm !important;
     background: #fff !important;
+    border: 0.25mm solid #D6DFE9 !important;
+    color: #0F2A4A !important;
   }
 
   .print-only-card > div:nth-child(7) {
+    position: absolute !important;
     display: flex !important;
     visibility: visible !important;
-    right: 12mm !important;
-    bottom: 8mm !important;
-    gap: 2.5mm !important;
+    right: 14mm !important;
+    bottom: 11mm !important;
+    width: 70mm !important;
+    height: 27mm !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 3mm !important;
+    margin: 0 !important;
     padding: 2.5mm 3mm !important;
     background: #fff !important;
-    border: 0.35mm solid rgba(201,162,39,0.6) !important;
+    border: 0.35mm solid #C9A227 !important;
+    border-radius: 2mm !important;
+    z-index: 12 !important;
   }
-
-  .print-only-card > div:nth-child(7),
-  .print-only-card > div:nth-child(7) * {
-    visibility: visible !important;
-  }
-
+  .print-only-card > div:nth-child(7), .print-only-card > div:nth-child(7) * { visibility: visible !important; }
   .print-only-card > div:nth-child(7) img {
-    width: 20mm !important;
-    height: 20mm !important;
     display: block !important;
+    visibility: visible !important;
+    width: 21mm !important;
+    height: 21mm !important;
+    min-width: 21mm !important;
+    min-height: 21mm !important;
+    object-fit: contain !important;
   }
+  .print-only-card > div:nth-child(7) > div { display: block !important; visibility: visible !important; text-align: left !important; }
+  .print-only-card > div:nth-child(7) p { display: block !important; visibility: visible !important; margin: 0 !important; }
+  .print-only-card > div:nth-child(7) p:first-child { font-size: 2.2mm !important; color: #7B8796 !important; }
+  .print-only-card > div:nth-child(7) p:last-child { margin-top: 1mm !important; font-size: 2.7mm !important; color: #0F2A4A !important; font-weight: 700 !important; }
 
-  .print-only-card > div:nth-child(7) p:first-child {
-    font-size: 2.4mm !important;
-  }
-
-  .print-only-card > div:nth-child(7) p:last-child {
-    font-size: 2.8mm !important;
-  }
-
-  .no-print {
-    display: none !important;
-  }
+  .no-print { display: none !important; }
 }
