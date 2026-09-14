@@ -380,3 +380,97 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     font-size:3.35mm!important;
   }
 }
+
+/* Ajuste definitivo: aproximar ao máximo da visualização da tela */
+@media print {
+  .print-only-card {
+    padding:8mm 12mm 7mm!important;
+  }
+
+  .print-only-card::before {
+    left:-24mm!important;
+    top:-29mm!important;
+    width:142mm!important;
+    height:49mm!important;
+  }
+
+  .print-only-card > p:first-child {
+    margin-top:12mm!important;
+    font-size:25mm!important;
+  }
+
+  .print-only-card > div:nth-child(2) {
+    width:106mm!important;
+    margin:3.5mm auto 5mm!important;
+  }
+
+  .print-only-card > p:nth-child(3) {
+    max-width:252mm!important;
+    font-size:5.8mm!important;
+    line-height:1.42!important;
+  }
+
+  .print-only-card > p:nth-child(3) > span:first-child {
+    max-width:238mm!important;
+    margin:3mm auto 3.5mm!important;
+    padding-bottom:1.5mm!important;
+    font-size:18.5mm!important;
+  }
+
+  .print-only-card > p:nth-child(4) {
+    margin-top:2mm!important;
+    font-size:4.6mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) {
+    width:78%!important;
+    margin-top:14mm!important;
+    gap:24mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div {
+    padding-top:3mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div > p:last-child {
+    font-size:4.35mm!important;
+  }
+
+  .print-only-card > div:nth-child(6) {
+    left:11mm!important;
+    bottom:6mm!important;
+    width:190mm!important;
+    height:38mm!important;
+  }
+
+  .certificate-partners-img {
+    width:190mm!important;
+    max-width:190mm!important;
+    max-height:38mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) {
+    right:8mm!important;
+    bottom:5mm!important;
+    width:78mm!important;
+    height:39mm!important;
+    gap:3.8mm!important;
+    padding:2.8mm 3.2mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) img {
+    width:29mm!important;
+    height:29mm!important;
+    min-width:29mm!important;
+    min-height:29mm!important;
+    flex-basis:29mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) p:first-child {
+    font-size:3mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) p:last-child {
+    font-size:3.6mm!important;
+  }
+}
