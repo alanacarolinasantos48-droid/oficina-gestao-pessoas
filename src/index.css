@@ -184,13 +184,17 @@ body {
     height: 210mm !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: hidden !important;
     background: #fff !important;
   }
 
-  body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
   body * { visibility: hidden !important; }
-  .print-only-card, .print-only-card * { visibility: visible !important; }
+  .print-only-card,
+  .print-only-card * { visibility: visible !important; }
 
   .print-only-card {
     position: fixed !important;
@@ -198,16 +202,34 @@ body {
     top: 0 !important;
     width: 297mm !important;
     height: 210mm !important;
+    min-width: 297mm !important;
+    min-height: 210mm !important;
+    max-width: 297mm !important;
+    max-height: 210mm !important;
     box-sizing: border-box !important;
     aspect-ratio: auto !important;
     margin: 0 !important;
     transform: none !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     border: 1.2mm solid #C9A227 !important;
     box-shadow: none !important;
     padding: 14mm 20mm 38mm !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+  }
+
+  .print-only-card::before {
+    left: -28mm !important;
+    top: -22mm !important;
+    width: 170mm !important;
+    height: 68mm !important;
+  }
+
+  .print-only-card::after {
+    right: -25mm !important;
+    bottom: -18mm !important;
+    width: 135mm !important;
+    height: 58mm !important;
   }
 
   .print-only-card > p:first-child { margin-top: 8mm !important; font-size: 17mm !important; }
@@ -219,23 +241,26 @@ body {
   .print-only-card > div:nth-child(5) > div { padding-top: 2mm !important; }
   .print-only-card > div:nth-child(5) > div > p:last-child { font-size: 2.8mm !important; }
 
-  /* Rodapé reservado dentro da página para impedir corte */
   .print-only-card > div:nth-child(6) {
-    position: absolute !important;
+    position: fixed !important;
     display: flex !important;
     visibility: visible !important;
     left: 14mm !important;
-    bottom: 13mm !important;
-    width: 185mm !important;
-    max-height: 25mm !important;
+    top: 177mm !important;
+    bottom: auto !important;
+    width: 180mm !important;
+    max-height: 22mm !important;
     gap: 1.8mm !important;
     flex-wrap: wrap !important;
-    align-content: flex-end !important;
+    align-content: flex-start !important;
     justify-content: flex-start !important;
     margin: 0 !important;
-    z-index: 10 !important;
+    z-index: 9999 !important;
   }
-  .print-only-card > div:nth-child(6), .print-only-card > div:nth-child(6) * { visibility: visible !important; }
+
+  .print-only-card > div:nth-child(6),
+  .print-only-card > div:nth-child(6) * { visibility: visible !important; }
+
   .print-only-card > div:nth-child(6) span {
     display: inline-block !important;
     font-size: 2.2mm !important;
@@ -247,13 +272,15 @@ body {
   }
 
   .print-only-card > div:nth-child(7) {
-    position: absolute !important;
+    position: fixed !important;
     display: flex !important;
     visibility: visible !important;
-    right: 14mm !important;
-    bottom: 11mm !important;
+    left: 212mm !important;
+    top: 164mm !important;
+    right: auto !important;
+    bottom: auto !important;
     width: 70mm !important;
-    height: 27mm !important;
+    height: 28mm !important;
     box-sizing: border-box !important;
     align-items: center !important;
     justify-content: flex-start !important;
@@ -263,9 +290,12 @@ body {
     background: #fff !important;
     border: 0.35mm solid #C9A227 !important;
     border-radius: 2mm !important;
-    z-index: 12 !important;
+    z-index: 10000 !important;
   }
-  .print-only-card > div:nth-child(7), .print-only-card > div:nth-child(7) * { visibility: visible !important; }
+
+  .print-only-card > div:nth-child(7),
+  .print-only-card > div:nth-child(7) * { visibility: visible !important; }
+
   .print-only-card > div:nth-child(7) img {
     display: block !important;
     visibility: visible !important;
@@ -275,10 +305,30 @@ body {
     min-height: 21mm !important;
     object-fit: contain !important;
   }
-  .print-only-card > div:nth-child(7) > div { display: block !important; visibility: visible !important; text-align: left !important; }
-  .print-only-card > div:nth-child(7) p { display: block !important; visibility: visible !important; margin: 0 !important; }
-  .print-only-card > div:nth-child(7) p:first-child { font-size: 2.2mm !important; color: #7B8796 !important; }
-  .print-only-card > div:nth-child(7) p:last-child { margin-top: 1mm !important; font-size: 2.7mm !important; color: #0F2A4A !important; font-weight: 700 !important; }
+
+  .print-only-card > div:nth-child(7) > div {
+    display: block !important;
+    visibility: visible !important;
+    text-align: left !important;
+  }
+
+  .print-only-card > div:nth-child(7) p {
+    display: block !important;
+    visibility: visible !important;
+    margin: 0 !important;
+  }
+
+  .print-only-card > div:nth-child(7) p:first-child {
+    font-size: 2.2mm !important;
+    color: #7B8796 !important;
+  }
+
+  .print-only-card > div:nth-child(7) p:last-child {
+    margin-top: 1mm !important;
+    font-size: 2.7mm !important;
+    color: #0F2A4A !important;
+    font-weight: 700 !important;
+  }
 
   .no-print { display: none !important; }
 }
