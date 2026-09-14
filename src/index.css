@@ -2,391 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-}
+html, body, #root { margin:0; padding:0; min-height:100%; }
+body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ============================================================
-   CERTIFICADO — MODELO HORIZONTAL
-   ============================================================ */
 .print-only-card {
-  position: relative;
-  width: min(1100px, calc(100vw - 40px));
-  aspect-ratio: 297 / 210;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden;
-  box-sizing: border-box;
-  border: 2px solid #C9A227 !important;
-  border-radius: 0 !important;
-  background: #fff !important;
-  padding: clamp(34px, 5vw, 72px) clamp(38px, 6vw, 92px) clamp(30px, 4vw, 58px) !important;
-  box-shadow: 0 14px 34px rgba(15, 42, 74, 0.16) !important;
-  text-align: center;
+  position:relative; width:min(1100px,calc(100vw - 40px)); aspect-ratio:297/210;
+  margin-left:50%; transform:translateX(-50%); overflow:hidden; box-sizing:border-box;
+  border:2px solid #C9A227 !important; border-radius:0 !important; background:#fff !important;
+  padding:clamp(34px,5vw,72px) clamp(38px,6vw,92px) clamp(30px,4vw,58px) !important;
+  box-shadow:0 14px 34px rgba(15,42,74,.16) !important; text-align:center;
 }
-
-.print-only-card::before {
-  content: "";
-  position: absolute;
-  width: 58%;
-  height: 33%;
-  left: -12%;
-  top: -17%;
-  border-radius: 0 0 70% 48%;
-  background: #0F2A4A;
-  border-bottom: 14px solid #C9A227;
-  transform: rotate(-3deg);
-  z-index: 0;
-}
-
-.print-only-card::after {
-  content: "";
-  position: absolute;
-  width: 43%;
-  height: 26%;
-  right: -12%;
-  bottom: -13%;
-  border-radius: 70% 0 0 0;
-  background: #0F2A4A;
-  border-top: 12px solid #C9A227;
-  transform: rotate(-4deg);
-  z-index: 0;
-}
-
-.print-only-card > * { position: relative; z-index: 1; }
-
-.print-only-card > p:first-child {
-  margin-top: 5.5%;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(34px, 5.5vw, 72px) !important;
-  line-height: 1;
-  letter-spacing: 0.06em !important;
-  color: #0F2A4A !important;
-  text-transform: uppercase;
-  font-weight: 500 !important;
-}
-
-.print-only-card > div:nth-child(2) {
-  width: min(330px, 38%) !important;
-  height: 3px !important;
-  margin: 18px auto 28px !important;
-  background: linear-gradient(90deg, transparent, #C9A227 15%, #C9A227 85%, transparent) !important;
-}
-
-.print-only-card > p:nth-child(3) {
-  max-width: 860px;
-  margin: 0 auto;
-  color: #3B4E63 !important;
-  font-size: clamp(13px, 1.55vw, 18px) !important;
-  line-height: 1.65 !important;
-}
-
-.print-only-card > p:nth-child(3) > span:first-child {
-  display: block;
-  margin: 16px auto 20px;
-  padding-bottom: 7px;
-  max-width: 820px;
-  border-bottom: 1px solid #C9A227;
-  color: #0F2A4A !important;
-  font-family: "Segoe Script", "Brush Script MT", Georgia, serif;
-  font-size: clamp(30px, 4.5vw, 56px) !important;
-  line-height: 1.2;
-  font-weight: 500 !important;
-}
-
-.print-only-card > p:nth-child(4) {
-  margin-top: 12px !important;
-  color: #5A6B7D !important;
-  font-size: clamp(11px, 1.2vw, 14px) !important;
-}
-
-.print-only-card > div:nth-child(5) {
-  width: 72%;
-  margin: 44px auto 0 !important;
-  gap: 70px !important;
-}
-
-.print-only-card > div:nth-child(5) > div {
-  border-top: 1.5px solid #C9A227 !important;
-  padding-top: 10px !important;
-  text-align: center !important;
-}
-
-.print-only-card > div:nth-child(5) > div > p:first-child { display: none !important; }
-.print-only-card > div:nth-child(5) > div > p:last-child {
-  color: #0F2A4A !important;
-  font-size: clamp(11px, 1.15vw, 14px) !important;
-  font-weight: 600 !important;
-}
-
-.print-only-card > div:nth-child(6) {
-  position: absolute !important;
-  left: 6%;
-  bottom: 5.5%;
-  width: 67%;
-  justify-content: flex-start !important;
-  gap: 7px !important;
-  margin: 0 !important;
-  z-index: 2;
-}
-
-.print-only-card > div:nth-child(6) span {
-  background: rgba(255,255,255,0.92);
-  border-color: #D6DFE9 !important;
-  color: #0F2A4A !important;
-  font-size: clamp(8px, 0.85vw, 10px) !important;
-  padding: 5px 9px !important;
-}
-
-.print-only-card > div:nth-child(7) {
-  position: absolute !important;
-  right: 4.5%;
-  bottom: 3.8%;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  padding: 9px 11px;
-  background: rgba(255,255,255,0.95);
-  border: 1px solid rgba(201,162,39,0.45);
-  border-radius: 8px;
-  z-index: 3;
-}
-
-.print-only-card > div:nth-child(7) img {
-  width: clamp(58px, 7vw, 82px) !important;
-  height: clamp(58px, 7vw, 82px) !important;
-}
-
-@media screen and (max-width: 760px) {
-  .print-only-card {
-    width: 960px;
-    transform: translateX(-50%) scale(0.72);
-    transform-origin: top center;
-    margin-bottom: -155px;
-  }
-}
+.print-only-card::before { content:""; position:absolute; width:58%; height:33%; left:-12%; top:-17%; border-radius:0 0 70% 48%; background:#0F2A4A; border-bottom:14px solid #C9A227; transform:rotate(-3deg); z-index:0; }
+.print-only-card::after { content:""; position:absolute; width:43%; height:26%; right:-12%; bottom:-13%; border-radius:70% 0 0 0; background:#0F2A4A; border-top:12px solid #C9A227; transform:rotate(-4deg); z-index:0; }
+.print-only-card > * { position:relative; z-index:1; }
+.print-only-card > p:first-child { margin-top:5.5%; font-family:Georgia,"Times New Roman",serif; font-size:clamp(34px,5.5vw,72px)!important; line-height:1; letter-spacing:.06em!important; color:#0F2A4A!important; text-transform:uppercase; font-weight:500!important; }
+.print-only-card > div:nth-child(2) { width:min(330px,38%)!important; height:3px!important; margin:18px auto 28px!important; background:linear-gradient(90deg,transparent,#C9A227 15%,#C9A227 85%,transparent)!important; }
+.print-only-card > p:nth-child(3) { max-width:860px; margin:0 auto; color:#3B4E63!important; font-size:clamp(13px,1.55vw,18px)!important; line-height:1.65!important; }
+.print-only-card > p:nth-child(3)>span:first-child { display:block; margin:16px auto 20px; padding-bottom:7px; max-width:820px; border-bottom:1px solid #C9A227; color:#0F2A4A!important; font-family:"Segoe Script","Brush Script MT",Georgia,serif; font-size:clamp(30px,4.5vw,56px)!important; line-height:1.2; font-weight:500!important; }
+.print-only-card > p:nth-child(4) { margin-top:12px!important; color:#5A6B7D!important; font-size:clamp(11px,1.2vw,14px)!important; }
+.print-only-card > div:nth-child(5) { width:72%; margin:44px auto 0!important; gap:70px!important; }
+.print-only-card > div:nth-child(5)>div { border-top:1.5px solid #C9A227!important; padding-top:10px!important; text-align:center!important; }
+.print-only-card > div:nth-child(5)>div>p:first-child { display:none!important; }
+.print-only-card > div:nth-child(5)>div>p:last-child { color:#0F2A4A!important; font-size:clamp(11px,1.15vw,14px)!important; font-weight:600!important; }
+.print-only-card > div:nth-child(6) { position:absolute!important; left:6%; bottom:5.5%; width:67%; justify-content:flex-start!important; gap:7px!important; margin:0!important; z-index:2; }
+.print-only-card > div:nth-child(6) span { background:rgba(255,255,255,.92); border-color:#D6DFE9!important; color:#0F2A4A!important; font-size:clamp(8px,.85vw,10px)!important; padding:5px 9px!important; }
+.print-only-card > div:nth-child(7) { position:absolute!important; right:4.5%; bottom:3.8%; margin:0!important; display:flex!important; align-items:center!important; gap:10px!important; padding:9px 11px; background:rgba(255,255,255,.95); border:1px solid rgba(201,162,39,.45); border-radius:8px; z-index:3; }
+.print-only-card > div:nth-child(7) img { width:clamp(58px,7vw,82px)!important; height:clamp(58px,7vw,82px)!important; }
+@media screen and (max-width:760px){ .print-only-card{width:960px;transform:translateX(-50%) scale(.72);transform-origin:top center;margin-bottom:-155px;} }
 
 @media print {
-  @page { size: A4 landscape; margin: 0; }
+  @page { size:A4 landscape; margin:0; }
+  html,body,#root { width:297mm!important; height:210mm!important; margin:0!important; padding:0!important; background:#fff!important; }
+  body { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  body * { visibility:hidden!important; }
+  .print-only-card,.print-only-card * { visibility:visible!important; }
+  .print-only-card { position:absolute!important; left:0!important; top:0!important; width:297mm!important; height:210mm!important; min-width:297mm!important; min-height:210mm!important; max-width:297mm!important; max-height:210mm!important; box-sizing:border-box!important; aspect-ratio:auto!important; margin:0!important; transform:none!important; overflow:hidden!important; border:1.2mm solid #C9A227!important; box-shadow:none!important; padding:10mm 16mm 8mm!important; display:flex!important; flex-direction:column!important; align-items:center!important; }
+  .print-only-card::before { left:-30mm!important; top:-26mm!important; width:145mm!important; height:58mm!important; border-bottom-width:4mm!important; }
+  .print-only-card::after { right:-18mm!important; bottom:-15mm!important; width:105mm!important; height:45mm!important; border-top-width:3mm!important; }
+  .print-only-card > p:first-child { margin:12mm 0 0!important; font-size:16mm!important; z-index:20!important; }
+  .print-only-card > div:nth-child(2) { margin:3mm auto 4mm!important; }
+  .print-only-card > p:nth-child(3) { max-width:220mm!important; margin-left:auto!important; margin-right:auto!important; font-size:3.7mm!important; line-height:1.42!important; }
+  .print-only-card > p:nth-child(3)>span:first-child { margin:3mm auto 3.5mm!important; padding-bottom:1.5mm!important; max-width:195mm!important; font-size:10.5mm!important; }
+  .print-only-card > p:nth-child(4) { margin-top:1.5mm!important; font-size:3.1mm!important; }
+  .print-only-card > div:nth-child(5) { width:72%!important; margin:6mm auto 0!important; gap:18mm!important; }
+  .print-only-card > div:nth-child(5)>div { padding-top:2mm!important; }
+  .print-only-card > div:nth-child(5)>div>p:last-child { font-size:2.8mm!important; }
 
-  html, body, #root {
-    width: 297mm !important;
-    height: 210mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #fff !important;
-  }
+  /* Rodapé normal dentro do certificado — sem fixed/absolute */
+  .print-only-card > div:nth-child(6) { position:relative!important; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important; width:88%!important; min-height:0!important; display:flex!important; gap:2mm!important; flex-wrap:wrap!important; align-items:center!important; justify-content:center!important; margin:auto auto 2.5mm!important; padding:0!important; visibility:visible!important; opacity:1!important; z-index:20!important; }
+  .print-only-card > div:nth-child(6),.print-only-card > div:nth-child(6) * { visibility:visible!important; opacity:1!important; }
+  .print-only-card > div:nth-child(6) span { display:inline-block!important; font-size:2.35mm!important; line-height:1.1!important; padding:1mm 2mm!important; background:#fff!important; border:.25mm solid #D6DFE9!important; border-radius:4mm!important; color:#0F2A4A!important; }
 
-  body {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  body * { visibility: hidden !important; }
-  .print-only-card,
-  .print-only-card * { visibility: visible !important; }
-
-  .print-only-card {
-    position: fixed !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 297mm !important;
-    height: 210mm !important;
-    min-width: 297mm !important;
-    min-height: 210mm !important;
-    max-width: 297mm !important;
-    max-height: 210mm !important;
-    box-sizing: border-box !important;
-    aspect-ratio: auto !important;
-    margin: 0 !important;
-    transform: none !important;
-    overflow: visible !important;
-    border: 1.2mm solid #C9A227 !important;
-    box-shadow: none !important;
-    padding: 10mm 16mm 42mm !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    display: block !important;
-  }
-
-  .print-only-card::before {
-    left: -30mm !important;
-    top: -26mm !important;
-    width: 145mm !important;
-    height: 58mm !important;
-    border-bottom-width: 4mm !important;
-  }
-
-  .print-only-card::after {
-    right: -18mm !important;
-    bottom: -15mm !important;
-    width: 105mm !important;
-    height: 45mm !important;
-    border-top-width: 3mm !important;
-  }
-
-  .print-only-card > p:first-child {
-    margin: 12mm 0 0 !important;
-    font-size: 16mm !important;
-    position: relative !important;
-    z-index: 20 !important;
-  }
-
-  .print-only-card > div:nth-child(2) { margin: 3mm auto 4mm !important; }
-
-  .print-only-card > p:nth-child(3) {
-    max-width: 220mm !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    font-size: 3.7mm !important;
-    line-height: 1.42 !important;
-  }
-
-  .print-only-card > p:nth-child(3) > span:first-child {
-    margin: 3mm auto 3.5mm !important;
-    padding-bottom: 1.5mm !important;
-    max-width: 195mm !important;
-    font-size: 10.5mm !important;
-  }
-
-  .print-only-card > p:nth-child(4) {
-    margin-top: 1.5mm !important;
-    font-size: 3.1mm !important;
-  }
-
-  .print-only-card > div:nth-child(5) {
-    width: 72% !important;
-    margin: 6mm auto 0 !important;
-    gap: 18mm !important;
-  }
-
-  .print-only-card > div:nth-child(5) > div { padding-top: 2mm !important; }
-  .print-only-card > div:nth-child(5) > div > p:last-child { font-size: 2.8mm !important; }
-
-  /* Rodapé em coordenadas fixas da página A4: evita o corte do Chrome */
-  .print-only-card > div:nth-child(6) {
-    position: fixed !important;
-    left: 14mm !important;
-    top: 176mm !important;
-    bottom: auto !important;
-    width: 178mm !important;
-    min-height: 14mm !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    gap: 2mm !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    z-index: 2147483646 !important;
-  }
-
-  .print-only-card > div:nth-child(6),
-  .print-only-card > div:nth-child(6) * {
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  .print-only-card > div:nth-child(6) span {
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 2.4mm !important;
-    line-height: 1.15 !important;
-    padding: 1.2mm 2.3mm !important;
-    background: #fff !important;
-    border: 0.25mm solid #D6DFE9 !important;
-    border-radius: 4mm !important;
-    color: #0F2A4A !important;
-  }
-
-  .print-only-card > div:nth-child(7) {
-    position: fixed !important;
-    left: 207mm !important;
-    top: 165mm !important;
-    right: auto !important;
-    bottom: auto !important;
-    width: 74mm !important;
-    height: 30mm !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 3mm !important;
-    margin: 0 !important;
-    padding: 2.5mm 3mm !important;
-    background: #fff !important;
-    border: 0.35mm solid #C9A227 !important;
-    border-radius: 2mm !important;
-    z-index: 2147483647 !important;
-  }
-
-  .print-only-card > div:nth-child(7),
-  .print-only-card > div:nth-child(7) * {
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  .print-only-card > div:nth-child(7) img {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 20mm !important;
-    height: 20mm !important;
-    min-width: 20mm !important;
-    min-height: 20mm !important;
-    object-fit: contain !important;
-    flex: 0 0 20mm !important;
-  }
-
-  .print-only-card > div:nth-child(7) > div {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    min-width: 0 !important;
-    flex: 1 1 auto !important;
-    color: #0F2A4A !important;
-  }
-
-  .print-only-card > div:nth-child(7) p {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin: 0 !important;
-    white-space: normal !important;
-  }
-
-  .print-only-card > div:nth-child(7) p:first-child {
-    font-size: 2.15mm !important;
-    line-height: 1.15 !important;
-    color: #7B8796 !important;
-  }
-
-  .print-only-card > div:nth-child(7) p:last-child {
-    margin-top: 1mm !important;
-    font-size: 2.65mm !important;
-    line-height: 1.2 !important;
-    color: #0F2A4A !important;
-    font-weight: 700 !important;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
-  }
-
-  .no-print { display: none !important; }
+  .print-only-card > div:nth-child(7) { position:relative!important; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important; width:auto!important; height:25mm!important; display:flex!important; visibility:visible!important; opacity:1!important; align-items:center!important; justify-content:center!important; gap:3mm!important; margin:0 auto 2mm!important; padding:2mm 4mm!important; background:#fff!important; border:.35mm solid #C9A227!important; border-radius:2mm!important; box-sizing:border-box!important; z-index:21!important; }
+  .print-only-card > div:nth-child(7),.print-only-card > div:nth-child(7) * { visibility:visible!important; opacity:1!important; }
+  .print-only-card > div:nth-child(7) img { display:block!important; width:19mm!important; height:19mm!important; min-width:19mm!important; min-height:19mm!important; object-fit:contain!important; flex:0 0 19mm!important; }
+  .print-only-card > div:nth-child(7)>div { display:flex!important; flex-direction:column!important; justify-content:center!important; align-items:flex-start!important; color:#0F2A4A!important; }
+  .print-only-card > div:nth-child(7) p { display:block!important; margin:0!important; visibility:visible!important; opacity:1!important; color:#0F2A4A!important; white-space:nowrap!important; }
+  .print-only-card > div:nth-child(7) p:first-child { font-size:2.15mm!important; color:#7B8796!important; }
+  .print-only-card > div:nth-child(7) p:last-child { margin-top:1mm!important; font-size:2.65mm!important; font-weight:700!important; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important; }
+  .no-print { display:none!important; }
 }
