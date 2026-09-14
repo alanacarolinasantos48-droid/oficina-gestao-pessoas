@@ -70,7 +70,6 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     text-align:center!important;
   }
 
-  /* decoração nas mesmas proporções da visualização */
   .print-only-card::before {
     left:-35mm!important;
     top:-31mm!important;
@@ -87,7 +86,6 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     border-top-width:3.2mm!important;
   }
 
-  /* título grande como na visualização */
   .print-only-card > p:first-child {
     margin:7mm 0 0!important;
     font-size:19mm!important;
@@ -102,7 +100,6 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     margin:5mm auto 7mm!important;
   }
 
-  /* texto principal e nome */
   .print-only-card > p:nth-child(3) {
     max-width:228mm!important;
     margin:0 auto!important;
@@ -125,7 +122,6 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     font-size:3.5mm!important;
   }
 
-  /* assinaturas com tamanho semelhante ao da tela */
   .print-only-card > div:nth-child(5) {
     width:72%!important;
     margin:10mm auto 0!important;
@@ -146,7 +142,6 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     line-height:1.15!important;
   }
 
-  /* logomarcas grandes no rodapé esquerdo */
   .print-only-card > div:nth-child(6) {
     position:absolute!important;
     left:15mm!important;
@@ -173,7 +168,6 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     object-position:left center!important;
   }
 
-  /* QR e código no canto inferior direito */
   .print-only-card > div:nth-child(7) {
     position:absolute!important;
     right:12mm!important;
@@ -241,4 +235,70 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
   }
 
   .no-print { display:none!important; }
+}
+
+/* Ajuste fino: impressão mais próxima da visualização em tela */
+@media print {
+  .print-only-card::before {
+    left:-28mm!important;
+    top:-30mm!important;
+    width:150mm!important;
+    height:52mm!important;
+    border-bottom-width:3.6mm!important;
+  }
+
+  .print-only-card > p:first-child {
+    margin-top:14mm!important;
+    font-size:20.5mm!important;
+  }
+
+  .print-only-card > div:nth-child(2) {
+    width:92mm!important;
+    margin:4mm auto 6mm!important;
+  }
+
+  .print-only-card > p:nth-child(3) {
+    max-width:238mm!important;
+    font-size:4.9mm!important;
+    line-height:1.5!important;
+  }
+
+  .print-only-card > p:nth-child(3) > span:first-child {
+    max-width:225mm!important;
+    margin:3.5mm auto 4mm!important;
+    font-size:15.5mm!important;
+  }
+
+  .print-only-card > p:nth-child(4) {
+    margin-top:2.5mm!important;
+    font-size:3.9mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) {
+    width:74%!important;
+    margin-top:8mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div > p:last-child {
+    font-size:3.6mm!important;
+  }
+
+  .certificate-partners-img {
+    width:182mm!important;
+    max-width:182mm!important;
+    max-height:33mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) {
+    width:70mm!important;
+    height:34mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) img {
+    width:25.5mm!important;
+    height:25.5mm!important;
+    min-width:25.5mm!important;
+    min-height:25.5mm!important;
+    flex-basis:25.5mm!important;
+  }
 }
