@@ -213,14 +213,10 @@ body {
     overflow: hidden !important;
     border: 1.2mm solid #C9A227 !important;
     box-shadow: none !important;
-    padding: 10mm 16mm 10mm !important;
+    padding: 10mm 16mm 42mm !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 76mm !important;
-    grid-template-rows: auto auto auto auto auto 1fr auto !important;
-    column-gap: 8mm !important;
-    align-items: start !important;
+    display: block !important;
   }
 
   .print-only-card::before {
@@ -232,15 +228,14 @@ body {
   }
 
   .print-only-card::after {
-    right: -12mm !important;
-    bottom: -10mm !important;
-    width: 95mm !important;
-    height: 38mm !important;
+    right: -18mm !important;
+    bottom: -15mm !important;
+    width: 105mm !important;
+    height: 45mm !important;
     border-top-width: 3mm !important;
   }
 
   .print-only-card > p:first-child {
-    grid-column: 1 / 3 !important;
     margin: 12mm 0 0 !important;
     font-size: 16mm !important;
     position: relative !important;
@@ -248,12 +243,10 @@ body {
   }
 
   .print-only-card > div:nth-child(2) {
-    grid-column: 1 / 3 !important;
     margin: 3mm auto 4mm !important;
   }
 
   .print-only-card > p:nth-child(3) {
-    grid-column: 1 / 3 !important;
     max-width: 220mm !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -269,13 +262,11 @@ body {
   }
 
   .print-only-card > p:nth-child(4) {
-    grid-column: 1 / 3 !important;
     margin-top: 1.5mm !important;
     font-size: 3.1mm !important;
   }
 
   .print-only-card > div:nth-child(5) {
-    grid-column: 1 / 3 !important;
     width: 72% !important;
     margin: 6mm auto 0 !important;
     gap: 18mm !important;
@@ -284,20 +275,22 @@ body {
   .print-only-card > div:nth-child(5) > div { padding-top: 2mm !important; }
   .print-only-card > div:nth-child(5) > div > p:last-child { font-size: 2.8mm !important; }
 
+  /* parceiros: posição absoluta e segura dentro da folha */
   .print-only-card > div:nth-child(6) {
-    grid-column: 1 / 2 !important;
-    grid-row: 7 !important;
-    position: static !important;
+    position: absolute !important;
+    left: 12mm !important;
+    bottom: 12mm !important;
+    width: 180mm !important;
+    min-height: 12mm !important;
     display: flex !important;
-    width: auto !important;
-    max-height: none !important;
-    gap: 1.8mm !important;
+    visibility: visible !important;
+    gap: 2mm !important;
     flex-wrap: wrap !important;
-    align-content: flex-end !important;
+    align-items: center !important;
     justify-content: flex-start !important;
-    align-self: end !important;
-    margin: 0 0 1mm 0 !important;
-    z-index: 30 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 1000 !important;
   }
 
   .print-only-card > div:nth-child(6),
@@ -306,47 +299,53 @@ body {
   .print-only-card > div:nth-child(6) span {
     display: inline-block !important;
     visibility: visible !important;
-    font-size: 2.25mm !important;
+    opacity: 1 !important;
+    font-size: 2.4mm !important;
     line-height: 1.15 !important;
-    padding: 1mm 2mm !important;
+    padding: 1.2mm 2.3mm !important;
     background: #fff !important;
     border: 0.25mm solid #D6DFE9 !important;
+    border-radius: 4mm !important;
     color: #0F2A4A !important;
   }
 
+  /* QR + código: bloco fixo no canto inferior direito */
   .print-only-card > div:nth-child(7) {
-    grid-column: 2 / 3 !important;
-    grid-row: 7 !important;
-    position: static !important;
-    display: flex !important;
-    width: 73mm !important;
-    height: 30mm !important;
+    position: absolute !important;
+    right: 12mm !important;
+    bottom: 10mm !important;
+    width: 78mm !important;
+    height: 31mm !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    visibility: visible !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    align-self: end !important;
-    justify-self: end !important;
-    gap: 3mm !important;
+    gap: 3.5mm !important;
     margin: 0 !important;
-    padding: 2.5mm 3mm !important;
+    padding: 2.7mm 3.2mm !important;
     background: #fff !important;
     border: 0.35mm solid #C9A227 !important;
     border-radius: 2mm !important;
-    z-index: 35 !important;
+    z-index: 1100 !important;
   }
 
   .print-only-card > div:nth-child(7),
-  .print-only-card > div:nth-child(7) * { visibility: visible !important; }
+  .print-only-card > div:nth-child(7) * {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 
   .print-only-card > div:nth-child(7) img {
     display: block !important;
     visibility: visible !important;
-    width: 21mm !important;
-    height: 21mm !important;
-    min-width: 21mm !important;
-    min-height: 21mm !important;
+    opacity: 1 !important;
+    width: 22mm !important;
+    height: 22mm !important;
+    min-width: 22mm !important;
+    min-height: 22mm !important;
     object-fit: contain !important;
-    flex: 0 0 21mm !important;
+    flex: 0 0 22mm !important;
   }
 
   .print-only-card > div:nth-child(7) > div {
@@ -355,28 +354,28 @@ body {
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
-    min-width: 0 !important;
-    flex: 1 1 auto !important;
+    min-width: 45mm !important;
     color: #0F2A4A !important;
   }
 
   .print-only-card > div:nth-child(7) p {
     display: block !important;
     visibility: visible !important;
-    margin: 0 !important;
     opacity: 1 !important;
-    white-space: normal !important;
+    margin: 0 !important;
+    color: #0F2A4A !important;
+    white-space: nowrap !important;
   }
 
   .print-only-card > div:nth-child(7) p:first-child {
-    font-size: 2.2mm !important;
+    font-size: 2.35mm !important;
     line-height: 1.2 !important;
     color: #7B8796 !important;
   }
 
   .print-only-card > div:nth-child(7) p:last-child {
-    margin-top: 1.2mm !important;
-    font-size: 2.8mm !important;
+    margin-top: 1.3mm !important;
+    font-size: 3mm !important;
     line-height: 1.2 !important;
     color: #0F2A4A !important;
     font-weight: 700 !important;
