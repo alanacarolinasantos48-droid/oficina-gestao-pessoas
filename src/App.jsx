@@ -1271,6 +1271,9 @@ function AdminParticipantes({ participants, settings, persist }) {
           <input placeholder="Buscar por nome ou e-mail" value={search} onChange={(e) => setSearch(e.target.value)} className="w-full pl-9 pr-3 py-2.5 rounded-lg border text-sm outline-none bg-white" style={{ borderColor: "#D6DFE9" }} />
         </div>
         <div className="flex gap-2">
+          <button onClick={() => window.open("/?checkin=1", "_blank")} className="text-xs font-medium px-3.5 py-2.5 rounded-lg border flex items-center gap-1.5">
+  <QrCode size={15} /> Abrir leitor de QR Code
+</button>
           <button onClick={exportCSV} className="text-xs font-medium px-3.5 py-2.5 rounded-lg border flex items-center gap-1.5" style={{ borderColor: "#D6DFE9", color: NAVY }}><Download size={14} /> CSV</button>
           <button onClick={exportXLSX} className="text-xs font-medium px-3.5 py-2.5 rounded-lg border flex items-center gap-1.5" style={{ borderColor: "#D6DFE9", color: NAVY }}><Download size={14} /> Excel</button>
         </div>
