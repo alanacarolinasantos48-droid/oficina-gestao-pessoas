@@ -1190,6 +1190,7 @@ function AdminDashboard({ participants }) {
 function AdminParticipantes({ participants, settings, persist }) {
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(null);
+  const [qrParticipant, setQrParticipant] = useState(null);
 
   const filtered = participants.filter((p) => {
     const q = search.toLowerCase();
@@ -1314,6 +1315,7 @@ function AdminParticipantes({ participants, settings, persist }) {
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
                       <button onClick={() => setEditing(p)} className="p-1.5 rounded-lg hover:bg-gray-100"><Pencil size={14} color={BLUE} /></button>
+                      <button onClick={() => setQrParticipant(p)} className="p-1.5 rounded-lg hover:bg-gray-100"><QrCode size={14} color={GOLD} /></button>
                       <button onClick={() => deleteParticipant(p.id)} className="p-1.5 rounded-lg hover:bg-gray-100"><Trash2 size={14} color="#B3261E" /></button>
                     </div>
                   </td>
@@ -1334,6 +1336,43 @@ function AdminParticipantes({ participants, settings, persist }) {
           }}
         />
       )}
+      {qrParticipant && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center px-5" style={{ background: "rgba(10,20,35,0.65)" }}>
+    <div className="bg-white rounded-2xl p-7 w-full max-w-sm text-center shadow-xl">
+      <h3 className="text-xl font-bold" style={{ color: NAVY }}>
+        QR Code do participante
+      </h3>
+
+      <p className="mt-2 font-semibold" style={{ color: BLUE }}>
+        {qrParticipant.name}
+      </p>
+
+      <div className="mt-5 flex justify-center">
+        <img
+          src={qrUrl(qrParticipant.id)}
+          alt="QR Code do participante"
+          className="w-48 h-48 rounded-lg border"
+        />
+      </div>
+
+      <p className="text-xs mt-3 font-mono" style={{ color: "#5A6B7D" }}>
+        Nº de inscrição: {qrParticipant.id}
+      </p>
+
+      <p className="text-xs mt-2" style={{ color: "#5A6B7D" }}>
+        Apresente este QR Code no dia do evento para o check-in.
+      </p>
+
+      <button
+        onClick={() => setQrParticipant(null)}
+        className="mt-5 w-full py-2.5 rounded-full font-semibold text-sm"
+        style={{ background: GOLD, color: NAVY }}
+      >
+        Fechar
+      </button>
+    </div>
+  </div>
+)}
     </div>
   );
 }
