@@ -960,11 +960,13 @@ const CertificateCard = React.forwardRef(function CertificateCard({ settings, pa
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 mt-5 flex-wrap">
-        {settings.partners.map((p, i) => (
-          <span key={i} className="text-[10px] px-2.5 py-1 rounded-full border" style={{ borderColor: "#E3E9F0", color: NAVY }}>{p}</span>
-        ))}
-      </div>
+     <div className="certificate-partners mt-5">
+  <img
+    src="/parceiros.jpeg"
+    alt="Parceiros da Oficina Gestão Estratégica de Pessoas"
+    className="certificate-partners-img"
+  />
+</div>
 
       <div className="flex items-center justify-center gap-4 mt-6">
         <img src={qrUrl(`Validação: ${validationCode}`, 90)} alt="QR de validação" className="w-[70px] h-[70px]" />
