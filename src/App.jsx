@@ -636,15 +636,19 @@ function Inscricao({ settings, inscricoesEncerradas, vagasRestantes, onSubmit })
     }
 
     try {
-      const { error: supabaseError } = await supabase.from("inscricoes").insert([
-        {
-          nome: form.name,
-          email: form.email,
-          whatsapp: form.whatsapp,
-          instituicao: form.institution,
-          cidade: form.city,
-        },
-      ]);
+      const { data: insertedData, error: supabaseError } = await supabase
+  .from("inscricoes")
+  .insert([
+    {
+      nome: form.name,
+      email: form.email,
+      whatsapp: form.whatsapp,
+      instituicao: form.institution,
+      cidade: form.city,
+    },
+  ])
+  .select("id")
+  .single();
 
       if (supabaseError) {
         console.error("Supabase - falha ao gravar inscrição:", supabaseError);
@@ -653,7 +657,7 @@ function Inscricao({ settings, inscricoesEncerradas, vagasRestantes, onSubmit })
         return;
       }
 
-      await onSubmit(form);
+      await onSubmit({ ...form, id: insertedData.id });
     } catch (err) {
       console.error("Supabase - erro de conexão ao gravar inscrição:", err);
       setError("Não foi possível concluir sua inscrição agora. Verifique sua conexão e tente novamente.");
