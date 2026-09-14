@@ -48,17 +48,61 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
   .print-only-card > div:nth-child(5)>div { padding-top:2mm!important; }
   .print-only-card > div:nth-child(5)>div>p:last-child { font-size:2.8mm!important; }
 
-  /* Rodapé normal dentro do certificado — sem fixed/absolute */
-  .print-only-card > div:nth-child(6) { position:relative!important; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important; width:88%!important; min-height:0!important; display:flex!important; gap:2mm!important; flex-wrap:wrap!important; align-items:center!important; justify-content:center!important; margin:auto auto 2.5mm!important; padding:0!important; visibility:visible!important; opacity:1!important; z-index:20!important; }
+  /* parceiros maiores no canto inferior esquerdo, mantendo o fluxo de impressão */
+  .print-only-card > div:nth-child(6) {
+    position:relative!important;
+    left:auto!important; right:auto!important; top:auto!important; bottom:auto!important;
+    width:58%!important;
+    display:flex!important;
+    gap:2.2mm!important;
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    align-self:flex-start!important;
+    margin:auto 0 4mm 0!important;
+    padding:0!important;
+    visibility:visible!important;
+    opacity:1!important;
+    z-index:20!important;
+  }
   .print-only-card > div:nth-child(6),.print-only-card > div:nth-child(6) * { visibility:visible!important; opacity:1!important; }
-  .print-only-card > div:nth-child(6) span { display:inline-block!important; font-size:2.35mm!important; line-height:1.1!important; padding:1mm 2mm!important; background:#fff!important; border:.25mm solid #D6DFE9!important; border-radius:4mm!important; color:#0F2A4A!important; }
+  .print-only-card > div:nth-child(6) span {
+    display:inline-block!important;
+    font-size:2.6mm!important;
+    line-height:1.1!important;
+    padding:1.15mm 2.4mm!important;
+    background:#fff!important;
+    border:.25mm solid #D6DFE9!important;
+    border-radius:4mm!important;
+    color:#0F2A4A!important;
+  }
 
-  .print-only-card > div:nth-child(7) { position:relative!important; left:auto!important; right:auto!important; top:auto!important; bottom:auto!important; width:auto!important; height:25mm!important; display:flex!important; visibility:visible!important; opacity:1!important; align-items:center!important; justify-content:center!important; gap:3mm!important; margin:0 auto 2mm!important; padding:2mm 4mm!important; background:#fff!important; border:.35mm solid #C9A227!important; border-radius:2mm!important; box-sizing:border-box!important; z-index:21!important; }
+  /* QR e autenticação no canto inferior direito, sem sair do fluxo */
+  .print-only-card > div:nth-child(7) {
+    position:relative!important;
+    left:auto!important; right:auto!important; top:auto!important; bottom:auto!important;
+    width:74mm!important;
+    height:29mm!important;
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    align-self:flex-end!important;
+    gap:3.2mm!important;
+    margin:-33mm 0 2mm auto!important;
+    padding:2.5mm 3.2mm!important;
+    background:#fff!important;
+    border:.35mm solid #C9A227!important;
+    border-radius:2mm!important;
+    box-sizing:border-box!important;
+    z-index:21!important;
+  }
   .print-only-card > div:nth-child(7),.print-only-card > div:nth-child(7) * { visibility:visible!important; opacity:1!important; }
-  .print-only-card > div:nth-child(7) img { display:block!important; width:19mm!important; height:19mm!important; min-width:19mm!important; min-height:19mm!important; object-fit:contain!important; flex:0 0 19mm!important; }
+  .print-only-card > div:nth-child(7) img { display:block!important; width:21mm!important; height:21mm!important; min-width:21mm!important; min-height:21mm!important; object-fit:contain!important; flex:0 0 21mm!important; }
   .print-only-card > div:nth-child(7)>div { display:flex!important; flex-direction:column!important; justify-content:center!important; align-items:flex-start!important; color:#0F2A4A!important; }
   .print-only-card > div:nth-child(7) p { display:block!important; margin:0!important; visibility:visible!important; opacity:1!important; color:#0F2A4A!important; white-space:nowrap!important; }
-  .print-only-card > div:nth-child(7) p:first-child { font-size:2.15mm!important; color:#7B8796!important; }
-  .print-only-card > div:nth-child(7) p:last-child { margin-top:1mm!important; font-size:2.65mm!important; font-weight:700!important; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important; }
+  .print-only-card > div:nth-child(7) p:first-child { font-size:2.3mm!important; color:#7B8796!important; }
+  .print-only-card > div:nth-child(7) p:last-child { margin-top:1mm!important; font-size:2.85mm!important; font-weight:700!important; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important; }
   .no-print { display:none!important; }
 }
