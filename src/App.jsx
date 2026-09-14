@@ -1416,6 +1416,7 @@ function AdminParticipantes({ participants, settings, persist }) {
                     <div className="flex gap-2">
                       <button onClick={() => setEditing(p)} className="p-1.5 rounded-lg hover:bg-gray-100"><Pencil size={14} color={BLUE} /></button>
                       <button onClick={() => setQrParticipant(p)} className="p-1.5 rounded-lg hover:bg-gray-100"><QrCode size={14} color={GOLD} /></button>
+                      <button onClick={() => issueCertificate(p.id)} className="p-1.5 rounded-lg hover:bg-gray-100"><Award size={14} color={GOLD} /></button>
                       <button onClick={() => deleteParticipant(p.id)} className="p-1.5 rounded-lg hover:bg-gray-100"><Trash2 size={14} color="#B3261E" /></button>
                     </div>
                   </td>
