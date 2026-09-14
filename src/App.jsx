@@ -114,22 +114,11 @@ function fmtDateTime(iso) {
    STORAGE HELPERS
    ============================================================ */
 function loadSiteData() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch (e) {
-    console.error("Erro ao carregar dados locais:", e);
-  }
   return { settings: DEFAULT_SETTINGS, participants: [] };
 }
-function saveSiteData(data) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    return true;
-  } catch (e) {
-    console.error("Erro ao salvar dados locais:", e);
-    return false;
-  }
+
+function saveSiteData() {
+  return true;
 }
 
 /* ============================================================
