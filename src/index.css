@@ -302,3 +302,81 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
     flex-basis:25.5mm!important;
   }
 }
+
+/* Ajuste final: ocupar melhor a folha sem alterar o design */
+@media print {
+  .print-only-card > p:first-child {
+    margin-top:13mm!important;
+    font-size:23mm!important;
+  }
+
+  .print-only-card > div:nth-child(2) {
+    width:100mm!important;
+    margin:4mm auto 6mm!important;
+  }
+
+  .print-only-card > p:nth-child(3) {
+    max-width:245mm!important;
+    font-size:5.35mm!important;
+    line-height:1.48!important;
+  }
+
+  .print-only-card > p:nth-child(3) > span:first-child {
+    max-width:232mm!important;
+    margin:3.5mm auto 4mm!important;
+    font-size:17mm!important;
+    line-height:1.12!important;
+  }
+
+  .print-only-card > p:nth-child(4) {
+    margin-top:2.5mm!important;
+    font-size:4.25mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) {
+    width:76%!important;
+    margin-top:12mm!important;
+    gap:22mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div > p:last-child {
+    font-size:4mm!important;
+  }
+
+  .print-only-card > div:nth-child(6) {
+    left:13mm!important;
+    bottom:7mm!important;
+    width:184mm!important;
+    height:34mm!important;
+  }
+
+  .certificate-partners-img {
+    width:184mm!important;
+    max-width:184mm!important;
+    max-height:34mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) {
+    right:10mm!important;
+    bottom:6mm!important;
+    width:74mm!important;
+    height:36mm!important;
+    gap:3.4mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) img {
+    width:27mm!important;
+    height:27mm!important;
+    min-width:27mm!important;
+    min-height:27mm!important;
+    flex-basis:27mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) p:first-child {
+    font-size:2.8mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) p:last-child {
+    font-size:3.35mm!important;
+  }
+}
