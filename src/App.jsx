@@ -1191,6 +1191,7 @@ function AdminParticipantes({ participants, settings, persist }) {
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(null);
   const [qrParticipant, setQrParticipant] = useState(null);
+  const [issuingCerts, setIssuingCerts] = useState(false);
 
   const filtered = participants.filter((p) => {
     const q = search.toLowerCase();
@@ -1226,6 +1227,105 @@ function AdminParticipantes({ participants, settings, persist }) {
   );
 
   await persist({ settings, participants: next });
+}
+  async function issueCertificate(id) {
+  const participant = participants.find((p) => p.id === id);
+
+  if (!participant) {
+    alert("Participante não encontrado.");
+    return;
+  }
+
+  if (participant.status !== "presente") {
+    alert("O certificado só pode ser emitido após a confirmação da presença.");
+    return;
+  }
+
+  if (participant.certCode) {
+    alert("O certificado deste participante já foi emitido.");
+    return;
+  }
+
+  const code = `OGP-${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
+
+  const { error } = await supabase
+    .from("inscricoes")
+    .update({
+      certificado_emitido: true,
+      codigo_certificado: code,
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    alert("Não foi possível emitir o certificado.");
+    return;
+  }
+
+  const next = participants.map((p) =>
+    p.id === id ? { ...p, certCode: code } : p
+  );
+
+  await persist({ settings, participants: next });
+  alert(`Certificado emitido com sucesso!\nCódigo: ${code}`);
+}
+
+  async function issueCertificatesForPresent() {
+  const eligible = participants.filter(
+    (p) => p.status === "presente" && !p.certCode
+  );
+
+  if (eligible.length === 0) {
+    alert("Não há participantes presentes aguardando certificado.");
+    return;
+  }
+
+  const confirmar = window.confirm(
+    `Emitir certificado para ${eligible.length} participante(s) presente(s)?`
+  );
+
+  if (!confirmar) return;
+
+  setIssuingCerts(true);
+
+  const codes = {};
+
+  for (const participant of eligible) {
+    const code = `OGP-${Math.random()
+      .toString(36)
+      .substring(2, 10)
+      .toUpperCase()}`;
+
+    const { error } = await supabase
+      .from("inscricoes")
+      .update({
+        certificado_emitido: true,
+        codigo_certificado: code,
+      })
+      .eq("id", participant.id);
+
+    if (error) {
+      console.error(
+        `Erro ao emitir certificado de ${participant.name}:`,
+        error
+      );
+      continue;
+    }
+
+    codes[participant.id] = code;
+  }
+
+  const next = participants.map((p) =>
+    codes[p.id] ? { ...p, certCode: codes[p.id] } : p
+  );
+
+  await persist({ settings, participants: next });
+
+  setIssuingCerts(false);
+
+  alert(
+    `${Object.keys(codes).length} certificado(s) emitido(s) com sucesso!`
+  );
 }
   async function deleteParticipant(id) {
     if (!window.confirm("Excluir esta inscrição? Esta ação não pode ser desfeita.")) return;
