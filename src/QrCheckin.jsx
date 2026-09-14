@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Camera, CheckCircle2, LogIn, QrCode, Search, XCircle } from "lucide-react";
+import { Html5Qrcode } from "html5-qrcode";
 import { supabase } from "./lib/supabaseClient";
 
 const NAVY = "#0F2A4A";
@@ -25,11 +26,7 @@ export default function QrCheckin() {
   const [manualCode, setManualCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState(null);
-
-  const videoRef = useRef(null);
-  const streamRef = useRef(null);
-  const frameRef = useRef(null);
-  const detectorRef = useRef(null);
+  const scannerRef = useRef(null);
   const scanLockRef = useRef(false);
 
   useEffect(() => {
@@ -56,71 +53,63 @@ export default function QrCheckin() {
     if (error) setAuthError("E-mail ou senha incorretos.");
   }
 
-  function stopCamera() {
-    if (frameRef.current) cancelAnimationFrame(frameRef.current);
-    frameRef.current = null;
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-    }
-    if (videoRef.current) videoRef.current.srcObject = null;
-    setCameraActive(false);
+  async function stopCamera() {
     scanLockRef.current = false;
+    if (scannerRef.current) {
+      try {
+        const state = scannerRef.current.getState?.();
+        if (state === 2 || state === 3) await scannerRef.current.stop();
+        await scannerRef.current.clear();
+      } catch (error) {
+        console.warn("Erro ao fechar câmera:", error);
+      }
+      scannerRef.current = null;
+    }
+    setCameraActive(false);
   }
 
   async function startCamera() {
     setResult(null);
     setCameraError("");
-
-    if (!("BarcodeDetector" in window)) {
-      setCameraError("Este navegador não possui leitor de QR nativo. Use o campo de código abaixo ou abra no Chrome atualizado do celular.");
-      return;
-    }
+    scanLockRef.current = false;
 
     try {
-      const formats = await window.BarcodeDetector.getSupportedFormats?.();
-      if (formats && !formats.includes("qr_code")) {
-        setCameraError("Este aparelho não oferece leitura de QR Code pelo navegador.");
-        return;
-      }
+      await stopCamera();
+      const scanner = new Html5Qrcode("qr-reader", { verbose: false });
+      scannerRef.current = scanner;
 
-      detectorRef.current = new window.BarcodeDetector({ formats: ["qr_code"] });
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: { ideal: "environment" } },
-        audio: false,
-      });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
+      await scanner.start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: (viewfinderWidth, viewfinderHeight) => {
+            const edge = Math.floor(Math.min(viewfinderWidth, viewfinderHeight) * 0.72);
+            return { width: edge, height: edge };
+          },
+          aspectRatio: 1.333334,
+        },
+        async (decodedText) => {
+          if (scanLockRef.current) return;
+          scanLockRef.current = true;
+          await confirmPresence(decodedText);
+          await stopCamera();
+        },
+        () => {}
+      );
+
       setCameraActive(true);
-      scanLockRef.current = false;
-      frameRef.current = requestAnimationFrame(scanFrame);
     } catch (error) {
       console.error("Erro ao abrir câmera:", error);
-      setCameraError("Não foi possível abrir a câmera. Verifique a permissão do navegador.");
-      stopCamera();
-    }
-  }
-
-  async function scanFrame() {
-    if (!videoRef.current || !detectorRef.current || scanLockRef.current) return;
-    try {
-      if (videoRef.current.readyState >= 2) {
-        const codes = await detectorRef.current.detect(videoRef.current);
-        if (codes?.length) {
-          scanLockRef.current = true;
-          const value = codes[0].rawValue;
-          await confirmPresence(value);
-          stopCamera();
-          return;
-        }
+      const message = String(error?.message || error || "");
+      if (/permission|notallowed|denied/i.test(message)) {
+        setCameraError("Permita o uso da câmera nas configurações do navegador e tente novamente.");
+      } else if (/notfound|camera|device/i.test(message)) {
+        setCameraError("Não encontrei uma câmera disponível neste aparelho.");
+      } else {
+        setCameraError("Não foi possível abrir a câmera. Tente novamente ou use o número da inscrição abaixo.");
       }
-    } catch (error) {
-      console.warn("Falha momentânea na leitura do QR:", error);
+      setCameraActive(false);
     }
-    frameRef.current = requestAnimationFrame(scanFrame);
   }
 
   async function confirmPresence(value) {
@@ -229,17 +218,16 @@ export default function QrCheckin() {
             <p className="text-sm mt-1" style={{ color: "#5A6B7D" }}>Leia o QR Code do comprovante de inscrição.</p>
           </div>
 
-          <div className="mt-5 rounded-2xl overflow-hidden border relative" style={{ borderColor: "#D6DFE9", background: NAVY }}>
-            <video ref={videoRef} playsInline muted className="w-full aspect-[4/3] object-cover" />
+          <div className="mt-5 rounded-2xl overflow-hidden border relative min-h-[280px] flex items-center justify-center" style={{ borderColor: "#D6DFE9", background: NAVY }}>
+            <div id="qr-reader" className="w-full" />
             {!cameraActive && (
-              <div className="absolute inset-0 flex items-center justify-center text-center px-6">
+              <div className="absolute inset-0 flex items-center justify-center text-center px-6 pointer-events-none">
                 <div>
                   <Camera size={34} color="white" className="mx-auto" />
                   <p className="text-white text-sm mt-2">A câmera aparecerá aqui.</p>
                 </div>
               </div>
             )}
-            {cameraActive && <div className="absolute inset-[18%] border-2 rounded-2xl pointer-events-none" style={{ borderColor: GOLD }} />}
           </div>
 
           <div className="flex gap-2 mt-4">
