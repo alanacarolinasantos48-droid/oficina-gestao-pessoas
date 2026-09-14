@@ -32,77 +32,213 @@ body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
 @media print {
   @page { size:A4 landscape; margin:0; }
-  html,body,#root { width:297mm!important; height:210mm!important; margin:0!important; padding:0!important; background:#fff!important; }
-  body { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
-  body * { visibility:hidden!important; }
-  .print-only-card,.print-only-card * { visibility:visible!important; }
-  .print-only-card { position:absolute!important; left:0!important; top:0!important; width:297mm!important; height:210mm!important; min-width:297mm!important; min-height:210mm!important; max-width:297mm!important; max-height:210mm!important; box-sizing:border-box!important; aspect-ratio:auto!important; margin:0!important; transform:none!important; overflow:hidden!important; border:1.2mm solid #C9A227!important; box-shadow:none!important; padding:10mm 16mm 8mm!important; display:flex!important; flex-direction:column!important; align-items:center!important; }
-  .print-only-card::before { left:-30mm!important; top:-26mm!important; width:145mm!important; height:58mm!important; border-bottom-width:4mm!important; }
-  .print-only-card::after { right:-18mm!important; bottom:-15mm!important; width:105mm!important; height:45mm!important; border-top-width:3mm!important; }
-  .print-only-card > p:first-child { margin:12mm 0 0!important; font-size:16mm!important; z-index:20!important; }
-  .print-only-card > div:nth-child(2) { margin:3mm auto 4mm!important; }
-  .print-only-card > p:nth-child(3) { max-width:220mm!important; margin-left:auto!important; margin-right:auto!important; font-size:3.7mm!important; line-height:1.42!important; }
-  .print-only-card > p:nth-child(3)>span:first-child { margin:3mm auto 3.5mm!important; padding-bottom:1.5mm!important; max-width:195mm!important; font-size:10.5mm!important; }
-  .print-only-card > p:nth-child(4) { margin-top:1.5mm!important; font-size:3.1mm!important; }
-  .print-only-card > div:nth-child(5) { width:72%!important; margin:6mm auto 0!important; gap:18mm!important; }
-  .print-only-card > div:nth-child(5)>div { padding-top:2mm!important; }
-  .print-only-card > div:nth-child(5)>div>p:last-child { font-size:2.8mm!important; }
 
-  /* parceiros maiores no canto inferior esquerdo, mantendo o fluxo de impressão */
+  html, body, #root {
+    width:297mm!important;
+    height:210mm!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+  }
+
+  body {
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+
+  body * { visibility:hidden!important; }
+  .print-only-card, .print-only-card * { visibility:visible!important; }
+
+  .print-only-card {
+    position:absolute!important;
+    left:0!important;
+    top:0!important;
+    width:297mm!important;
+    height:210mm!important;
+    min-width:297mm!important;
+    min-height:210mm!important;
+    max-width:297mm!important;
+    max-height:210mm!important;
+    box-sizing:border-box!important;
+    aspect-ratio:auto!important;
+    margin:0!important;
+    transform:none!important;
+    overflow:hidden!important;
+    border:0.7mm solid #C9A227!important;
+    box-shadow:none!important;
+    padding:9mm 15mm 8mm!important;
+    text-align:center!important;
+  }
+
+  /* decoração nas mesmas proporções da visualização */
+  .print-only-card::before {
+    left:-35mm!important;
+    top:-31mm!important;
+    width:172mm!important;
+    height:69mm!important;
+    border-bottom-width:3.8mm!important;
+  }
+
+  .print-only-card::after {
+    right:-23mm!important;
+    bottom:-18mm!important;
+    width:128mm!important;
+    height:54mm!important;
+    border-top-width:3.2mm!important;
+  }
+
+  /* título grande como na visualização */
+  .print-only-card > p:first-child {
+    margin:7mm 0 0!important;
+    font-size:19mm!important;
+    line-height:1!important;
+    letter-spacing:.06em!important;
+    z-index:20!important;
+  }
+
+  .print-only-card > div:nth-child(2) {
+    width:86mm!important;
+    height:.8mm!important;
+    margin:5mm auto 7mm!important;
+  }
+
+  /* texto principal e nome */
+  .print-only-card > p:nth-child(3) {
+    max-width:228mm!important;
+    margin:0 auto!important;
+    font-size:4.5mm!important;
+    line-height:1.55!important;
+  }
+
+  .print-only-card > p:nth-child(3) > span:first-child {
+    display:block!important;
+    max-width:218mm!important;
+    margin:4mm auto 5mm!important;
+    padding-bottom:2mm!important;
+    font-size:14mm!important;
+    line-height:1.15!important;
+    border-bottom:.35mm solid #C9A227!important;
+  }
+
+  .print-only-card > p:nth-child(4) {
+    margin-top:3mm!important;
+    font-size:3.5mm!important;
+  }
+
+  /* assinaturas com tamanho semelhante ao da tela */
+  .print-only-card > div:nth-child(5) {
+    width:72%!important;
+    margin:10mm auto 0!important;
+    gap:18mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div {
+    border-top:.35mm solid #C9A227!important;
+    padding-top:2.7mm!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div > p:first-child {
+    display:none!important;
+  }
+
+  .print-only-card > div:nth-child(5) > div > p:last-child {
+    font-size:3.25mm!important;
+    line-height:1.15!important;
+  }
+
+  /* logomarcas grandes no rodapé esquerdo */
   .print-only-card > div:nth-child(6) {
-    position:relative!important;
-    left:auto!important; right:auto!important; top:auto!important; bottom:auto!important;
-    width:58%!important;
+    position:absolute!important;
+    left:15mm!important;
+    bottom:8mm!important;
+    width:176mm!important;
+    height:31mm!important;
     display:flex!important;
-    gap:2.2mm!important;
-    flex-wrap:wrap!important;
     align-items:center!important;
     justify-content:flex-start!important;
-    align-self:flex-start!important;
-    margin:auto 0 4mm 0!important;
+    margin:0!important;
     padding:0!important;
     visibility:visible!important;
     opacity:1!important;
     z-index:20!important;
   }
-  .print-only-card > div:nth-child(6),.print-only-card > div:nth-child(6) * { visibility:visible!important; opacity:1!important; }
-  .print-only-card > div:nth-child(6) span {
-    display:inline-block!important;
-    font-size:2.6mm!important;
-    line-height:1.1!important;
-    padding:1.15mm 2.4mm!important;
-    background:#fff!important;
-    border:.25mm solid #D6DFE9!important;
-    border-radius:4mm!important;
-    color:#0F2A4A!important;
+
+  .certificate-partners-img {
+    display:block!important;
+    width:176mm!important;
+    max-width:176mm!important;
+    height:auto!important;
+    max-height:31mm!important;
+    object-fit:contain!important;
+    object-position:left center!important;
   }
 
-  /* QR e autenticação no canto inferior direito, sem sair do fluxo */
+  /* QR e código no canto inferior direito */
   .print-only-card > div:nth-child(7) {
-    position:relative!important;
-    left:auto!important; right:auto!important; top:auto!important; bottom:auto!important;
-    width:74mm!important;
-    height:29mm!important;
+    position:absolute!important;
+    right:12mm!important;
+    bottom:7mm!important;
+    width:66mm!important;
+    height:32mm!important;
     display:flex!important;
     visibility:visible!important;
     opacity:1!important;
     align-items:center!important;
     justify-content:flex-start!important;
-    align-self:flex-end!important;
-    gap:3.2mm!important;
-    margin:-33mm 0 2mm auto!important;
-    padding:2.5mm 3.2mm!important;
+    gap:3mm!important;
+    margin:0!important;
+    padding:2.5mm 3mm!important;
     background:#fff!important;
     border:.35mm solid #C9A227!important;
     border-radius:2mm!important;
     box-sizing:border-box!important;
     z-index:21!important;
   }
-  .print-only-card > div:nth-child(7),.print-only-card > div:nth-child(7) * { visibility:visible!important; opacity:1!important; }
-  .print-only-card > div:nth-child(7) img { display:block!important; width:21mm!important; height:21mm!important; min-width:21mm!important; min-height:21mm!important; object-fit:contain!important; flex:0 0 21mm!important; }
-  .print-only-card > div:nth-child(7)>div { display:flex!important; flex-direction:column!important; justify-content:center!important; align-items:flex-start!important; color:#0F2A4A!important; }
-  .print-only-card > div:nth-child(7) p { display:block!important; margin:0!important; visibility:visible!important; opacity:1!important; color:#0F2A4A!important; white-space:nowrap!important; }
-  .print-only-card > div:nth-child(7) p:first-child { font-size:2.3mm!important; color:#7B8796!important; }
-  .print-only-card > div:nth-child(7) p:last-child { margin-top:1mm!important; font-size:2.85mm!important; font-weight:700!important; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important; }
+
+  .print-only-card > div:nth-child(7),
+  .print-only-card > div:nth-child(7) * {
+    visibility:visible!important;
+    opacity:1!important;
+  }
+
+  .print-only-card > div:nth-child(7) img {
+    display:block!important;
+    width:24mm!important;
+    height:24mm!important;
+    min-width:24mm!important;
+    min-height:24mm!important;
+    object-fit:contain!important;
+    flex:0 0 24mm!important;
+  }
+
+  .print-only-card > div:nth-child(7) > div {
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    color:#0F2A4A!important;
+  }
+
+  .print-only-card > div:nth-child(7) p {
+    display:block!important;
+    margin:0!important;
+    visibility:visible!important;
+    opacity:1!important;
+    color:#0F2A4A!important;
+    white-space:nowrap!important;
+  }
+
+  .print-only-card > div:nth-child(7) p:first-child {
+    font-size:2.6mm!important;
+    color:#7B8796!important;
+  }
+
+  .print-only-card > div:nth-child(7) p:last-child {
+    margin-top:1.3mm!important;
+    font-size:3.1mm!important;
+    font-weight:700!important;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  }
+
   .no-print { display:none!important; }
 }
