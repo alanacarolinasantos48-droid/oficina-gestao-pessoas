@@ -1320,10 +1320,24 @@ function AdminParticipantes({ participants, settings, persist }) {
   );
 }
   async function deleteParticipant(id) {
-    if (!window.confirm("Excluir esta inscrição? Esta ação não pode ser desfeita.")) return;
-    const next = participants.filter((p) => p.id !== id);
-    await persist({ settings, participants: next });
+  if (!window.confirm("Excluir esta inscrição? Esta ação não pode ser desfeita.")) return;
+
+  const { error } = await supabase
+    .from("inscricoes")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Erro ao excluir inscrição:", error);
+    alert("Não foi possível excluir a inscrição. Tente novamente.");
+    return;
   }
+
+  const next = participants.filter((p) => p.id !== id);
+  await persist({ settings, participants: next });
+
+  alert("Inscrição excluída com sucesso!");
+}
 
   function exportCSV() {
     const rows = participants.map((p) => ({
