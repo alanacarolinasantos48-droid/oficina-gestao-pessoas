@@ -625,19 +625,18 @@ function Inscricao({ settings, inscricoesEncerradas, vagasRestantes, onSubmit })
     }
 
     try {
-      const { data: insertedData, error: supabaseError } = await supabase
-  .from("inscricoes")
-  .insert([
-    {
-      nome: form.name,
-      email: form.email,
-      whatsapp: form.whatsapp,
-      instituicao: form.institution,
-      cidade: form.city,
-    },
-  ])
-  .select("id")
-  .single();
+     const { data: novoId, error: supabaseError } = await supabase.rpc(
+  "criar_inscricao",
+  {
+    p_nome: form.name,
+    p_email: form.email,
+    p_whatsapp: form.whatsapp,
+    p_instituicao: form.institution,
+    p_cidade: form.city,
+  }
+);
+
+const insertedData = { id: novoId };
 
       if (supabaseError) {
         console.error("Supabase - falha ao gravar inscrição:", supabaseError);
