@@ -47,7 +47,7 @@ const DEFAULT_SETTINGS = {
     "A Oficina Gestão Estratégica de Pessoas tem como objetivo desenvolver conhecimentos e habilidades relacionados à gestão estratégica de pessoas, valorizando competências, liderança, comunicação, trabalho em equipe e protagonismo feminino. Ao final, espera-se que as participantes compreendam a importância da gestão estratégica de pessoas, reconheçam suas principais competências, fortaleçam sua capacidade de liderança e estabeleçam ações para o próprio desenvolvimento profissional.",
   workloadHours: "4 horas",
   maxSlots: 20,
-  whatsappNumber: "5599999999999",
+  whatsappNumber: "5599982102170",
   adminPassword: "ifma2026",
   schedule: [
     { time: "18h30 – 18h45", title: "Acolhida e apresentação", description: "Recepção das participantes, apresentação da professora, objetivos e conteúdos da oficina." },
